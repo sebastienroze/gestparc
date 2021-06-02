@@ -17,7 +17,7 @@ public class TypeMateriel {
     private int id;
 
     @JsonView({CustomJsonView.VueTypeMateriel.class})
-    private String Description;
+    private String description;
 
 /*
 mappedBy reference an unknown target entity property: ifa.devlog.gestparc.model.Materiel.materiel in ifa.devlog.gestparc.model.TypeMateriel.listeMateriel

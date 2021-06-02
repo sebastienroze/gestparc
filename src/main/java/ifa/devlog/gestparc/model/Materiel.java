@@ -17,13 +17,13 @@ public class Materiel {
     @JsonView({CustomJsonView.VueMateriel.class})
     private int id;
     @JsonView({CustomJsonView.VueMateriel.class})
-    private String Nom;
+    private String nom;
 
     @JsonView({CustomJsonView.VueMateriel.class})
-    private String Reference;
+    private String reference;
 
     @JsonView({CustomJsonView.VueMateriel.class})
-    private Integer Etat;
+    private Integer etat;
 
     @ManyToOne
     @JsonView({CustomJsonView.VueMateriel.class})

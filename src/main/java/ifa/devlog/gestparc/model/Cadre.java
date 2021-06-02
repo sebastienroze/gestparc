@@ -16,7 +16,7 @@ public class Cadre {
     private int id;
 
     @JsonView({CustomJsonView.VueCadre.class})
-    private String Description;
+    private String description;
 
     public int getId() {
         return id;
