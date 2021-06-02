@@ -39,6 +39,7 @@ public class MaterielController {
 
     @PostMapping("/admin/materiel/new")
     public ResponseEntity<String> inscription(@RequestBody Materiel materiel) {
+        System.out.println("ok new mat");
             materielDao.saveAndFlush(materiel);
             return ResponseEntity.ok(Integer.toString(materiel.getId()));
     }
