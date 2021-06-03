@@ -170,9 +170,9 @@
 				<database_password>!adminR00t</database_password>
 				<jwt_secret>azerty123</jwt_secret>
 				<!-- __________________________________________________________________________________  -->
-				<database_initialization_mode>NEVER</database_initialization_mode>
-				<database_ddl_initialization>false</database_ddl_initialization>
-				<database_ddl_initialization_mode>none</database_ddl_initialization_mode>
+				<database_initialization_mode>ALWAYS</database_initialization_mode>
+				<database_ddl_initialization>true</database_ddl_initialization>
+				<database_ddl_initialization_mode>update</database_ddl_initialization_mode>
 				<jpa_show_sql>false</jpa_show_sql>
 			</properties>
 		</profile>

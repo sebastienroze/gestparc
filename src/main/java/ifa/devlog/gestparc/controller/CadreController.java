@@ -38,7 +38,7 @@ public class CadreController {
     }
 
     @PostMapping("/admin/cadre/new")
-    public ResponseEntity<String> inscription(@RequestBody Cadre cadre) {
+    public ResponseEntity<String> create(@RequestBody Cadre cadre) {
             cadreDao.saveAndFlush(cadre);
             return ResponseEntity.ok(Integer.toString(cadre.getId()));
     }

@@ -5,4 +5,5 @@ public class CustomJsonView {
     public static class VueCadre {    }    ;
     public static class VueTypeMateriel {    }    ;
     public static class VueMateriel {    }    ;
+    public static class VueLocation {    }    ;
 }
