@@ -37,6 +37,52 @@ public class Location {
         return id;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Boolean getValide() {
+        return valide;
+    }
+    public void setValide(boolean valide) {
+        this.valide = valide;
+    }
+
+    public Materiel getMateriel() {
+        return materiel;
+    }
+
+    public void setMateriel(Materiel materiel) {
+        this.materiel = materiel;
+    }
+
+    public LocalDate getDate_debut() {
+        return date_debut;
+    }
+
+    public void setDate_debut(LocalDate date_debut) {
+        this.date_debut = date_debut;
+    }
+
+    public LocalDate getDate_retour() {
+        return date_retour;
+    }
+
+    public void setDate_retour(LocalDate date_retour) {
+        this.date_retour = date_retour;
+    }
+
+    public TypeMateriel getTypeMateriel() {
+        return typeMateriel;
+    }
+
+    public void setTypeMateriel(TypeMateriel typeMateriel) {
+        this.typeMateriel = typeMateriel;
+    }
 }
 
 

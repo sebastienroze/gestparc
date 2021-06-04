@@ -12,6 +12,11 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 
 public class Utilisateur {
+    public Utilisateur() {}
+    public Utilisateur(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView({CustomJsonView.VueUtilisateur.class})

@@ -16,8 +16,11 @@ public class UserDetailsCustom implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authrities;
     private List<Role> roles;
+    private int id;
+
 
     public UserDetailsCustom(Utilisateur utilisateur) {
+        this.id = utilisateur.getId();
         this.userName=utilisateur.getLogin();
         this.password=utilisateur.getPassword();
         active = true;
@@ -66,4 +69,8 @@ public class UserDetailsCustom implements UserDetails {
     public List<Role> getRoles() {
         return roles;
     }
+    public int getId() {
+        return id;
+    }
+
 }
