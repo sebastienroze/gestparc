@@ -19,23 +19,31 @@ public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueLocation.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueHistorique.class,
+            CustomJsonView.VueRetour.class})
     private int id;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueHistorique.class,
+            CustomJsonView.VueLocation.class,CustomJsonView.VueRetour.class})
     private String login;
     @JsonView({CustomJsonView.VueUtilisateur.class})
     private String mot_de_passe;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class,})
     private String nom;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class,})
     private String prenom;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class,})
     private String cp;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class})
     private String ville;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class,})
     private String telephone;
-    @JsonView({CustomJsonView.VueUtilisateur.class})
+    @JsonView({CustomJsonView.VueUtilisateur.class,CustomJsonView.VueMaterielDetail.class,})
     private String email;
     public String getLogin() {
         return login;
@@ -63,4 +71,27 @@ public class Utilisateur {
         this.mot_de_passe = password;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

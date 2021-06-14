@@ -13,10 +13,23 @@ import java.util.List;
 public class TypeMateriel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({CustomJsonView.VueTypeMateriel.class})
+    @JsonView({
+            CustomJsonView.VueTypeMateriel.class,
+            CustomJsonView.VueMateriel.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueLocation.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueRetour.class
+    })
     private int id;
 
-    @JsonView({CustomJsonView.VueTypeMateriel.class})
+    @JsonView({
+            CustomJsonView.VueTypeMateriel.class,
+            CustomJsonView.VueMateriel.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueLocation.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueRetour.class})
     private String description;
 
 /*
@@ -31,4 +44,11 @@ mappedBy reference an unknown target entity property: ifa.devlog.gestparc.model.
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

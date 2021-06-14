@@ -11,26 +11,58 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 
 public class Location {
+    public static final int Demande=0;
+    public static final int Valide=1;
+    public static final int EnPret=2;
+    public static final int Finalisée=3;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({CustomJsonView.VueCadre.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueHistorique.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueRetour.class})
     private int id;
 
-    @JsonView({CustomJsonView.VueLocation.class})
-    private Boolean valide;
-    @JsonView({CustomJsonView.VueLocation.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueRetour.class})
+    @ManyToOne
+    private Cadre cadre;
+
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueRetour.class})
+    private int etat;
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueRetour.class})
     private LocalDate date_debut;
-    @JsonView({CustomJsonView.VueLocation.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueRetour.class})
     private LocalDate date_retour;
 
     @ManyToOne
-    @JsonView({CustomJsonView.VueLocation.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueRetour.class})
     private TypeMateriel typeMateriel;
     @ManyToOne
-    @JsonView({CustomJsonView.VueLocation.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueRetour.class})
     private Materiel materiel;
     @ManyToOne
-    @JsonView({CustomJsonView.VueLocation.class})
+    @JsonView({CustomJsonView.VueLocation.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueHistorique.class,
+            CustomJsonView.VueRetour.class})
     private Utilisateur utilisateur;
 
     public int getId() {
@@ -46,10 +78,15 @@ public class Location {
     }
 
     public Boolean getValide() {
-        return valide;
+        return this.etat>0;
     }
-    public void setValide(boolean valide) {
-        this.valide = valide;
+
+    public Integer getEtat() {
+        return this.etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
     }
 
     public Materiel getMateriel() {
@@ -82,6 +119,14 @@ public class Location {
 
     public void setTypeMateriel(TypeMateriel typeMateriel) {
         this.typeMateriel = typeMateriel;
+    }
+
+    public void setCadre(Cadre cadre) {
+        this.cadre = cadre;
+    }
+
+    public Cadre getCadre() {
+        return cadre;
     }
 }
 

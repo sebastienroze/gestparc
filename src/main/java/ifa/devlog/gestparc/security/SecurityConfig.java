@@ -45,21 +45,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             corsConfiguration.setExposedHeaders(Arrays.asList(
                     "Access-Control-Allow-Headers",
                     "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+//                    "X-Frame-Options: SAMEORIGIN"  +
                     "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
             return corsConfiguration;
 
         } )
                 .and().csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/docs/**").permitAll()
                 .antMatchers("/app/**").permitAll()
                 .antMatchers("/test/**").permitAll()
                 .antMatchers("/authentication").permitAll()
 /*
+
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/admin/**").permitAll()
-*/
-                .antMatchers("/admin/**").hasRole("ADMINISTRATEUR")
-                .antMatchers("/user/**").hasAnyRole("ADMINISTRATEUR","UTILISATEUR")
+ */
+                .antMatchers("/user/**").hasRole("ADMINISTRATEUR")
+                .antMatchers("/admin/**").hasAnyRole("ADMINISTRATEUR","UTILISATEUR")
 
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()

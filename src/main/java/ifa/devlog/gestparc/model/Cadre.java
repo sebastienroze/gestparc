@@ -12,14 +12,23 @@ import javax.persistence.*;
 public class Cadre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({CustomJsonView.VueCadre.class})
+    @JsonView({CustomJsonView.VueCadre.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueLocation.class})
     private int id;
 
-    @JsonView({CustomJsonView.VueCadre.class})
+    @JsonView({CustomJsonView.VueCadre.class,
+            CustomJsonView.VueAlerte.class,
+            CustomJsonView.VueMaterielDetail.class,
+            CustomJsonView.VueLocation.class})
     private String description;
 
     public int getId() {
         return id;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }
