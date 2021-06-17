@@ -34,10 +34,17 @@ public class ReparationController {
         this.materielDao = materielDao;
         this.historiqueDao = historiqueDao;
     }
+
     @JsonView(CustomJsonView.VueReparation.class)
     @GetMapping("/admin/reparations")
     public ResponseEntity<List<Reparation>> getReparations() {
         return ResponseEntity.ok(reparationDao.findAll());
+    }
+
+    @JsonView(CustomJsonView.VueReparation.class)
+    @GetMapping("/admin/reparations/encours")
+    public ResponseEntity<List<Reparation>> getReparationsEncours() {
+        return ResponseEntity.ok(reparationDao.findByEtatNot(Reparation.Finalisée));
     }
 
     @JsonView(CustomJsonView.VueReparation.class)

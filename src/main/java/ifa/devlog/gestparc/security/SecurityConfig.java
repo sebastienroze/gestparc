@@ -38,14 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.cors().configurationSource(httpServletRequest -> new CorsConfiguration().applyPermitDefaultValues() )
+        http.headers().frameOptions().disable();
         http.cors().configurationSource(httpServletRequest -> {
             CorsConfiguration corsConfiguration = new CorsConfiguration();
             corsConfiguration.applyPermitDefaultValues();
             corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT"));
             corsConfiguration.setExposedHeaders(Arrays.asList(
-                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Headers,Access-Control-Allow-Origin",
                     "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
-//                    "X-Frame-Options: SAMEORIGIN"  +
+//                    "X-Frame-Options: SAMEORIGIN,"  +
                     "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
             return corsConfiguration;
 
@@ -56,13 +57,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/app/**").permitAll()
                 .antMatchers("/test/**").permitAll()
                 .antMatchers("/authentication").permitAll()
-/*
 
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/admin/**").permitAll()
- */
-                .antMatchers("/user/**").hasRole("ADMINISTRATEUR")
+//                .antMatchers("/user/**").permitAll()
+//                .antMatchers("/admin/**").permitAll()
+
+                .antMatchers("/user/**").hasRole("UTILISATEUR")
                 .antMatchers("/admin/**").hasAnyRole("ADMINISTRATEUR","UTILISATEUR")
+
 
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()

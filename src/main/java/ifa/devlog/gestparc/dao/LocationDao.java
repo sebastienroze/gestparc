@@ -16,6 +16,8 @@ public interface LocationDao extends JpaRepository<Location,Integer> {
     public List<Location> findByEtatOrEtat(int etat,int ouEtat) ;
     public List<Location> findByMaterielAndEtat(Materiel materiel,int etat) ;
     public List<Location> findByEtatNot(int etat) ;
+    public List<Location> findByUtilisateurAndEtatNot(Utilisateur utilisateur,int etat) ;
+
 
 
 //    public Optional<List<Location>> findByUtilisateur(Utilisateur utilisateur) ;

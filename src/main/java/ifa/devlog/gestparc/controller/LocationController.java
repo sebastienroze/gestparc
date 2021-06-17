@@ -59,6 +59,15 @@ public class LocationController {
         return ResponseEntity.ok(locationDao.findByUtilisateur(utilisateur));
     }
 
+    @GetMapping("/user/locations/encours")
+    public ResponseEntity<List<Location>> getLocationsEncours(@RequestHeader(value="Authorization") String authorization) {
+        boolean isAdmin = jwtUtil.getIsAdminFromAuthorization(authorization);
+        if (isAdmin) return ResponseEntity.ok(locationDao.findByEtatNot(Location.Finalisée));
+        Integer idUtilisateur = jwtUtil.getUtilisateurIdFromAuthorization(authorization);
+        Utilisateur utilisateur = new Utilisateur(idUtilisateur);
+        return ResponseEntity.ok(locationDao.findByUtilisateurAndEtatNot(utilisateur,Location.Finalisée));
+    }
+
     @JsonView(CustomJsonView.VueLocation.class)
     @GetMapping("/admin/locationsEnPret")
     public ResponseEntity<List<Location>> getLocationsEnPret() {
@@ -85,7 +94,8 @@ public class LocationController {
     @GetMapping("/docs/location/borderau/{id}")
     public ResponseEntity<byte[]> getBorderau(@PathVariable int id
     ) {
-        String documentName = "Bordereau " + id + ".pdf";
+        String documentName = "/home/doc/";
+        documentName = documentName+"Bordereau " + id + ".pdf";
         File file = new File(documentName);
         byte[] contents = new byte[0];
         if (!file.exists()) {
@@ -95,7 +105,7 @@ public class LocationController {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
                     }
                     Bordereau bordereau = new Bordereau(optionalLocation.get());
-                    bordereau.generate();
+                    bordereau.generate(documentName);
                 }
         }
         try {
@@ -124,6 +134,8 @@ public class LocationController {
     public ResponseEntity<String> update(@RequestBody Location location,
                                          @RequestHeader(value="Authorization") String authorization ) {
         Integer idUtilisateur = jwtUtil.getUtilisateurIdFromAuthorization(authorization);
+        System.out.println("****************************************");
+        System.out.println(location);
         Optional<Location> locationDoublon =  locationDao.findById(location.getId());
         if (locationDoublon.isPresent()) {
             if (locationDoublon.get().getUtilisateur().getId() == idUtilisateur &&

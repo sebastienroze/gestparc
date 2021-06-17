@@ -11,4 +11,6 @@ import java.util.List;
 public interface ReparationDao extends JpaRepository<Reparation,Integer> {
     public List<Reparation> findByMaterielAndEtat(Materiel materiel, int etat) ;
     public List<Reparation> findByEtat(int etat) ;
+    public List<Reparation> findByEtatNot(int etat) ;
+
 }

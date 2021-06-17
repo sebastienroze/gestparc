@@ -45,6 +45,7 @@ public class RetourController {
         return ResponseEntity.ok(retourDao.findAll());
     }
 
+
     @JsonView(CustomJsonView.VueRetour.class)
     @GetMapping("/admin/retour/{id}")
     public ResponseEntity<Retour> getRetour(@PathVariable int id) {
@@ -83,23 +84,4 @@ public class RetourController {
         materielDao.saveAndFlush(materiel);
         return ResponseEntity.ok(Integer.toString(retour.getId()));
     }
-
-/*
-    @PostMapping("/admin/retour/update")
-    public ResponseEntity<String> update(@RequestBody Retour retour) {
-        retourDao.saveAndFlush(retour);
-        return ResponseEntity.ok(Integer.toString(retour.getId()));
-    }
-    */
-/*
-    @DeleteMapping("/admin/retour/delete/{id}")
-    public ResponseEntity<Integer> deleteStatut(@PathVariable int id) {
-        if (retourDao.existsById(id)) {
-            retourDao.deleteById(id);
-            return ResponseEntity.ok(id);
-        } else {
-            return ResponseEntity.noContent().build();
-        }
-    }
-*/
 }

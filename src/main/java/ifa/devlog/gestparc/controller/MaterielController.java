@@ -13,19 +13,27 @@ import ifa.devlog.gestparc.more.Bordereau;
 import ifa.devlog.gestparc.more.EtatStock;
 import ifa.devlog.gestparc.more.MaterielDetail;
 import ifa.devlog.gestparc.view.CustomJsonView;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -157,13 +165,15 @@ public class MaterielController {
 
     @GetMapping("/docs/materiel/etatStock")
     public ResponseEntity<byte[]> getEtatStock() {
-        String documentName = "Etat du stock " + LocalDate.now() + ".pdf";
+        String documentName = "/home/doc/";
+        documentName = documentName+"Etat du stock " + LocalDate.now() + ".pdf";
+
         File file = new File(documentName);
         byte[] contents = new byte[0];
 //        if (!file.exists())
         {
                EtatStock etatStock = new EtatStock();
-            etatStock.generate(materielDao,locationDao,reparationDao);
+            etatStock.generate(documentName,materielDao,locationDao,reparationDao);
         }
         try {
             contents = Files.readAllBytes(file.toPath());
@@ -173,4 +183,5 @@ public class MaterielController {
         headers.setContentType(MediaType.APPLICATION_PDF);
         return new ResponseEntity<>(contents, headers, HttpStatus.OK);
     }
+
 }

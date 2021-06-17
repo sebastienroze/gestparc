@@ -15,9 +15,7 @@ public class Bordereau {
         this.location = location;
     }
 
-    public void generate() {
-        String documentName = "Bordereau " + location.getId() + ".pdf";
-        System.out.println("generation "+documentName);
+    public void generate(String documentName) {
 
         if (location.getEtat() != Location.Demande) try {
             Document document = new Document(PageSize.A4, 20, 20, 20, 20);

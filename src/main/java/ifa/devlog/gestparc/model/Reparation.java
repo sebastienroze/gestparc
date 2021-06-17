@@ -48,9 +48,18 @@ public class Reparation {
     private String etatCasse;
     @JsonView({CustomJsonView.VueReparation.class})
     private String etatRepare;
+
+    public Reparation() {
+    }
+
+    public Reparation(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
+
 
     public int getEtat() {
         return etat;

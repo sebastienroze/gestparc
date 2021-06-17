@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,18 @@ public class UtilisateurController {
 
     @GetMapping("/test/test")
     public ResponseEntity<String> getTest() {
-        return ResponseEntity.ok("test ok");
+        String str = "";
+
+        File fileName = new File("/home/doc/test");
+        str = fileName.getAbsolutePath();
+        /*
+        File[] fileList = fileName.listFiles();
+        String str = "";
+        for (File file: fileList) {
+            str = str +file + "\n";
+        }
+*/
+        return ResponseEntity.ok(str);
     }
 
     @GetMapping("/admin/utilisateurs")

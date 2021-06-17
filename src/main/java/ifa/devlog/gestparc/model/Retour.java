@@ -52,4 +52,5 @@ public class Retour {
     public Location getLocation() {
         return location;
     }
+
 }

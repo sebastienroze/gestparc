@@ -11,4 +11,5 @@ public class CustomJsonView {
     public static class VueHistorique {    }    ;
     public static class VueReparation {    }    ;
     public static class VueAlerte {    }    ;
+    public static class VueDocument {    }    ;
 }

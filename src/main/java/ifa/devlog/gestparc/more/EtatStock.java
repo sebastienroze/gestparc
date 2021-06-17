@@ -17,8 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class EtatStock {
-    public void generate(MaterielDao materielDao, LocationDao locationDao, ReparationDao reparationDao) {
-        String documentName = "Etat du stock " + LocalDate.now()+ ".pdf";;
+    public void generate(String documentName,MaterielDao materielDao, LocationDao locationDao, ReparationDao reparationDao) {
         System.out.println("generation "+documentName);
         List<Materiel> materiels = materielDao.findAll();
         try {
