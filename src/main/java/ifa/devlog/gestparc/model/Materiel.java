@@ -26,6 +26,7 @@ public class Materiel {
             CustomJsonView.VueMaterielDetail.class,
             CustomJsonView.VueAlerte.class,
             CustomJsonView.VueLocation.class,
+            CustomJsonView.VueReparation.class,
             CustomJsonView.VueRetour.class})
     private String nom;
 

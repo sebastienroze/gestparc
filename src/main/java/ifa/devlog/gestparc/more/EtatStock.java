@@ -14,6 +14,7 @@ import ifa.devlog.gestparc.model.Reparation;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class EtatStock {
@@ -35,7 +36,11 @@ public class EtatStock {
             document.add(Chunk.NEWLINE);
             Paragraph paragraph = new Paragraph();
             paragraph.setFont(font);
-            paragraph.setTabSettings(new TabSettings(100));
+            paragraph.setTabSettings(new TabSettings(Arrays.asList(
+                    new TabStop(100),
+                    new TabStop(250),
+                    new TabStop(400)
+            )));
             paragraph.add("Reférence");
             paragraph.add(Chunk.TABBING);
             paragraph.add("Nom");

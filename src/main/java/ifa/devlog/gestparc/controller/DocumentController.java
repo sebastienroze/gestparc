@@ -142,7 +142,7 @@ public class DocumentController {
             @RequestParam("materiel") String idMateriel,
             @RequestParam("reparation") String idReparation,
             @RequestParam("retour") String idRetour,
-            @RequestParam("file") MultipartFile file) {
+            @RequestParam(value = "file", required = false) MultipartFile file) {
 
         Optional<Document> optionalDocument = this.documentDao.findById(id);
         if (optionalDocument.isPresent()) {
